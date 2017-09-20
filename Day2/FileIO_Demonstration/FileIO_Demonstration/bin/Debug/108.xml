@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<Accounts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <AccountNumber>108</AccountNumber>
+  <AccountName>Ape</AccountName>
+  <AccountBalance>6000</AccountBalance>
+  <AccountType>Savings</AccountType>
+</Accounts>

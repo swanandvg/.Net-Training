@@ -1,0 +1,5 @@
+C:\.Net Training\Day1\Employee_Management\Employee_Management\bin\Debug\Employee_Management.dll
+C:\.Net Training\Day1\Employee_Management\Employee_Management\bin\Debug\Employee_Management.pdb
+C:\.Net Training\Day1\Employee_Management\Employee_Management\obj\Debug\Employee_Management.csprojResolveAssemblyReference.cache
+C:\.Net Training\Day1\Employee_Management\Employee_Management\obj\Debug\Employee_Management.dll
+C:\.Net Training\Day1\Employee_Management\Employee_Management\obj\Debug\Employee_Management.pdb

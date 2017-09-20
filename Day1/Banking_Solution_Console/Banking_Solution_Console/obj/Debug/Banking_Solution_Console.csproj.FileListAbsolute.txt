@@ -1,0 +1,8 @@
+C:\.Net Training\Day1\Banking_Solution_Console\Banking_Solution_Console\bin\Debug\Banking_Solution_Console.exe.config
+C:\.Net Training\Day1\Banking_Solution_Console\Banking_Solution_Console\bin\Debug\Banking_Solution_Console.exe
+C:\.Net Training\Day1\Banking_Solution_Console\Banking_Solution_Console\bin\Debug\Banking_Solution_Console.pdb
+C:\.Net Training\Day1\Banking_Solution_Console\Banking_Solution_Console\bin\Debug\Banking_Library.dll
+C:\.Net Training\Day1\Banking_Solution_Console\Banking_Solution_Console\bin\Debug\Banking_Library.pdb
+C:\.Net Training\Day1\Banking_Solution_Console\Banking_Solution_Console\obj\Debug\Banking_Solution_Console.csprojResolveAssemblyReference.cache
+C:\.Net Training\Day1\Banking_Solution_Console\Banking_Solution_Console\obj\Debug\Banking_Solution_Console.exe
+C:\.Net Training\Day1\Banking_Solution_Console\Banking_Solution_Console\obj\Debug\Banking_Solution_Console.pdb

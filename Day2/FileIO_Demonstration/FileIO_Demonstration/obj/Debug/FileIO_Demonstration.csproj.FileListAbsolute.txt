@@ -1,0 +1,6 @@
+C:\.Net Training\Day2\FileIO_Demonstration\FileIO_Demonstration\bin\Debug\FileIO_Demonstration.exe.config
+C:\.Net Training\Day2\FileIO_Demonstration\FileIO_Demonstration\obj\Debug\FileIO_Demonstration.csprojResolveAssemblyReference.cache
+C:\.Net Training\Day2\FileIO_Demonstration\FileIO_Demonstration\bin\Debug\FileIO_Demonstration.exe
+C:\.Net Training\Day2\FileIO_Demonstration\FileIO_Demonstration\bin\Debug\FileIO_Demonstration.pdb
+C:\.Net Training\Day2\FileIO_Demonstration\FileIO_Demonstration\obj\Debug\FileIO_Demonstration.exe
+C:\.Net Training\Day2\FileIO_Demonstration\FileIO_Demonstration\obj\Debug\FileIO_Demonstration.pdb

@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<Accounts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <AccountNumber>105</AccountNumber>
+  <AccountName>Swanand G</AccountName>
+  <AccountBalance>3000</AccountBalance>
+  <AccountType>PF</AccountType>
+</Accounts>
