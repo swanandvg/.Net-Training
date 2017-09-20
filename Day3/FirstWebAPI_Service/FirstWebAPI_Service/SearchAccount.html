@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <style>
+        h3.visible {
+            visibility: visible;
+        }
+
+        h3.hidden {
+            visibility: hidden;
+        }
+    </style>
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            //var z = document.get
+            $("#btn_searchAcc").click(function () {
+                
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url : 'http://localhost:60502/api/employee/getsearchaccounts?AccNo=' + document.getElementById("txt_accountNo").value,
+                    success: function (data) {
+                        //alert("Success");
+                        console.log(data);
+                        if (data != null) {
+                            document.getElementById("message").innerText = "success!!";
+                            //document.getElementById("AccNo").className = "visible"
+                            document.getElementById("AccNo").innerText += data.AccNumber;
+                            document.getElementById("AccName").innerText += data.AccName;
+                            document.getElementById("AccType").innerText += data.AccType;
+                            document.getElementById("AccBal").innerText += data.AccBalance;
+                            document.getElementById("AccNo").className = "visible"
+                            document.getElementById("AccName").className = "visible"
+                            document.getElementById("AccType").className = "visible"
+                            document.getElementById("AccBal").className = "visible"
+                        }
+                        else {
+                            document.getElementById("message").innerText = "wrong account number";
+                            document.getElementById("AccNo").className = "hidden";
+                            document.getElementById("AccName").className = "hidden";
+                            document.getElementById("AccType").className = "hidden";
+                            document.getElementById("AccBal").className = "hidden";
+                        }
+                    }
+                })
+            });
+        });
+    </script>
+</head>
+<body>
+    <input type="text" id="txt_accountNo" />
+    <br />
+    <input type="button" id="btn_searchAcc" />
+    <br />
+    <h2 id="message">&nbsp;</h2>
+    <h3 id="AccNo">Account Number: </h3>
+    <h3 id="AccName">Account Name: </h3>
+    <h3 id="AccType">Account Type: </h3>
+    <h3 id="AccBal">Account Balance: </h3>
+
+    
+
+</body>
+</html>

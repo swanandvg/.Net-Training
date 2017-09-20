@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            //var z = document.get
+            $("#btn_AddAccount").click(function () {
+                var accountsData = {
+                    AccName: document.getElementById("txt_AccName").value,
+                    AccType: document.getElementById("txt_AccType").value,
+                    AccBalance: document.getElementById("txt_AccBalance").value
+                };
+                $.ajax({
+                    type: 'POST',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    data: JSON.stringify(accountsData),
+                    url: 'http://localhost:60502/api/employee/PostAddAccounts',//?accName=' + document.getElementById("txt_AccName").value + '&accType=' + document.getElementById("txt_AccType").value + '&balance=' + document.getElementById("txt_AccBalance").value,
+                    success: function (data) {
+                        //alert("Success");
+                        console.log(data);
+                        document.getElementById("form_AddNewAccount").reset();
+                        document.getElementById("AccNumber").innerHTML = 'Account Number = ' + data;
+                    }
+                })
+            });
+        });
+    </script>
+</head>
+<body>
+    <form id="form_AddNewAccount">
+        <table border="1" id="tblAccount">
+            <tr>
+                <td>Account Name</td>
+                <td><input type="text" id="txt_AccName" /></td>
+            </tr>
+            <tr>
+                <td>Account Type</td>
+                <td>
+                    <!--<input type="text" id="txt_AccType" />-->
+                    <select  id="txt_AccType">
+                        <option value="Savings">Savings</option>
+                        <option value="Current">Current</option>
+                        <option value="PF">PF</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Account Balance</td>
+                <td><input type="number" id="txt_AccBalance" /></td>
+            </tr>
+            <tr>
+                <td colspan="2" id="AccNumber">&nbsp;</td>
+            </tr>
+            <tr>
+                <td><input type="button" value="Add Account" id="btn_AddAccount" /></td>
+                <td><input type="reset" value="Reset" /></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
