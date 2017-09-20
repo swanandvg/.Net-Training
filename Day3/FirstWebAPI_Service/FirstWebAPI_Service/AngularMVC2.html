@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="Scripts/angular.min.js"></script>
+</head>
+<body ng-app="recordsModule">
+   
+
+    <div ng-controller="w3cController">
+        <!--<table border="1">
+            <tr>
+                <th>Name</th>
+                <th>City</th>
+                <th>Country</th>
+            </tr>
+            <tr ng-repeat="d in records">
+                <td>{{d.Name}}</td>
+                <td>{{d.City}}</td>
+                <td>{{d.Country}}</td>
+                
+            </tr>
+        </table>-->
+
+        <input type="text" ng-model="searchByName" placeholder="Enter Name Here" />
+
+
+        <div ng-repeat="d in records | filter:searchByName" style="background-color:lime">
+            <h4>{{d.Name}}</h4>
+            <h4>{{d.City}}</h4>
+            <h4>{{d.Country}}</h4>
+        </div>
+    </div>
+</body>
+<script>
+    var bankApp = angular.module("recordsModule", []);
+    bankApp.controller("w3cController", function ($scope,$http) {
+        $http.get('https://www.w3schools.com/angular/customers.php').then(function (data1) { $scope.records = data1.data.records });
+    })
+</script>
+</html>

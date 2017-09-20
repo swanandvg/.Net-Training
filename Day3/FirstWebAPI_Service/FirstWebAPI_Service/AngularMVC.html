@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="Content/bootstrap.min.css" />
+</head>
+<body ng-app="bankModule">
+    <input type="text" ng-model="userName" placeholder="Enter Name here" />
+    
+    Welcome: {{userName}}
+
+    <div ng-controller="accController">
+        <table border="1" class="table table-hover table-striped">
+            <tr>
+                <th>Account Number</th>
+                <th>Account Name</th>
+                <th>Account Type</th>
+                <th>Branch Number</th>
+                <th>Account Balance</th>
+            </tr>
+            <tr ng-repeat="d in accounts">
+                <td>{{d.AccNumber}}</td>
+                <td>{{d.AccName}}</td>
+                <td>{{d.AccType}}</td>
+                <td>{{d.BranchNo}}</td>
+                <td>{{d.AccBalance}}</td>
+            </tr>
+        </table>
+    </div>
+</body>
+<script>
+    var bankApp = angular.module("bankModule", []);
+    bankApp.controller("accController", function ($scope,$http) {
+        $http.get('http://localhost:60502/api/accountsinfo/allaccounts').then(function (data1) { $scope.accounts = data1.data });
+    })
+</script>
+</html>
