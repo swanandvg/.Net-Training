@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LINQ_to_FileSystem
 {
     public partial class Form1 : Form
     {
+        DirectoryInfo path = new DirectoryInfo(@"C:\Users\gajens2\Desktop\Folder");
         public Form1()
         {
             InitializeComponent();
@@ -22,7 +18,6 @@ namespace LINQ_to_FileSystem
         {
             DirectoryInfo dir= new DirectoryInfo(@"C:\");
             var folders = from f in dir.GetFiles()
-                          
                           select f;
 
             dataGridView1.DataSource = folders.ToList();
@@ -30,26 +25,25 @@ namespace LINQ_to_FileSystem
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var extension = "";
-
-            if(comboBox1.SelectedItem.ToString() == "Word")
-                extension = ".docx";
-            else if (comboBox1.SelectedItem.ToString() == "Excel")
-                extension = ".xlsx";
-            else if (comboBox1.SelectedItem.ToString() == "PPT")
-                extension = ".pptx";
-            else if (comboBox1.SelectedItem.ToString() == "Zip")
-                extension = ".zip";
-            else
-                extension = ".txt";
-
-            var path = new DirectoryInfo(@"C:\Users\gajens2\Desktop\Folder");
-
+            //showing selected extensions files
             var files = from a in path.GetFiles()
-                        where a.Extension == extension
+                        where a.Extension == comboBox1.SelectedItem.ToString() 
                         select a;
 
             dataGridView1.DataSource = files.ToList();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            //Adding all extensions in comboBox1
+            var files = from f in path.GetFiles()
+                        select f;
+            var ext = (from f in files
+                       select f.Extension).Distinct();
+
+            foreach (string item in ext)
+                comboBox1.Items.Add(item);
+            
         }
     }
 }

@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BankingDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AccountDetail">
+          <Key>
+            <PropertyRef Name="accNo" />
+          </Key>
+          <Property Name="accNo" Type="int" Nullable="false" />
+          <Property Name="accName" Type="varchar" MaxLength="20" />
+          <Property Name="accType" Type="varchar" MaxLength="20" />
+          <Property Name="accBalance" Type="int" />
+          <Property Name="accBranch" Type="int" />
+        </EntityType>
+        <EntityType Name="BranchInfo">
+          <Key>
+            <PropertyRef Name="branchNo" />
+          </Key>
+          <Property Name="branchNo" Type="int" Nullable="false" />
+          <Property Name="branchName" Type="varchar" MaxLength="20" />
+          <Property Name="branchCity" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <Association Name="fk_branchNo">
+          <End Role="BranchInfo" Type="Self.BranchInfo" Multiplicity="0..1" />
+          <End Role="AccountDetail" Type="Self.AccountDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BranchInfo">
+              <PropertyRef Name="branchNo" />
+            </Principal>
+            <Dependent Role="AccountDetail">
+              <PropertyRef Name="accBranch" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="sp_deleteAccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="accNo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_newAccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="accNo" Type="int" Mode="InOut" />
+          <Parameter Name="accName" Type="varchar" Mode="In" />
+          <Parameter Name="accType" Type="varchar" Mode="In" />
+          <Parameter Name="accBalance" Type="int" Mode="In" />
+          <Parameter Name="accBranch" Type="int" Mode="In" />
+        </Function>
+        <Function Name="updateBalance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="BankingDBModelStoreContainer">
+          <EntitySet Name="AccountDetail" EntityType="Self.AccountDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BranchInfo" EntityType="Self.BranchInfo" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_branchNo" Association="Self.fk_branchNo">
+            <End Role="BranchInfo" EntitySet="BranchInfo" />
+            <End Role="AccountDetail" EntitySet="AccountDetail" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BankingDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AccountDetail">
+          <Key>
+            <PropertyRef Name="accNo" />
+          </Key>
+          <Property Name="accNo" Type="Int32" Nullable="false" />
+          <Property Name="accName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="accType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="accBalance" Type="Int32" />
+          <Property Name="accBranch" Type="Int32" />
+          <NavigationProperty Name="BranchInfo" Relationship="Self.fk_branchNo" FromRole="AccountDetail" ToRole="BranchInfo" />
+        </EntityType>
+        <EntityType Name="BranchInfo">
+          <Key>
+            <PropertyRef Name="branchNo" />
+          </Key>
+          <Property Name="branchNo" Type="Int32" Nullable="false" />
+          <Property Name="branchName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="branchCity" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AccountDetails" Relationship="Self.fk_branchNo" FromRole="BranchInfo" ToRole="AccountDetail" />
+        </EntityType>
+        <Association Name="fk_branchNo">
+          <End Role="BranchInfo" Type="Self.BranchInfo" Multiplicity="0..1" />
+          <End Role="AccountDetail" Type="Self.AccountDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BranchInfo">
+              <PropertyRef Name="branchNo" />
+            </Principal>
+            <Dependent Role="AccountDetail">
+              <PropertyRef Name="accBranch" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BankingDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AccountDetails" EntityType="Self.AccountDetail" />
+          <EntitySet Name="BranchInfoes" EntityType="Self.BranchInfo" />
+          <AssociationSet Name="fk_branchNo" Association="Self.fk_branchNo">
+            <End Role="BranchInfo" EntitySet="BranchInfoes" />
+            <End Role="AccountDetail" EntitySet="AccountDetails" />
+          </AssociationSet>
+          <FunctionImport Name="sp_deleteAccount">
+            <Parameter Name="accNo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_newAccount">
+            <Parameter Name="accNo" Mode="InOut" Type="Int32" />
+            <Parameter Name="accName" Mode="In" Type="String" />
+            <Parameter Name="accType" Mode="In" Type="String" />
+            <Parameter Name="accBalance" Mode="In" Type="Int32" />
+            <Parameter Name="accBranch" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="updateBalance" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BankingDBModelStoreContainer" CdmEntityContainer="BankingDBEntities">
+          <EntitySetMapping Name="AccountDetails">
+            <EntityTypeMapping TypeName="BankingDBModel.AccountDetail">
+              <MappingFragment StoreEntitySet="AccountDetail">
+                <ScalarProperty Name="accNo" ColumnName="accNo" />
+                <ScalarProperty Name="accName" ColumnName="accName" />
+                <ScalarProperty Name="accType" ColumnName="accType" />
+                <ScalarProperty Name="accBalance" ColumnName="accBalance" />
+                <ScalarProperty Name="accBranch" ColumnName="accBranch" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BranchInfoes">
+            <EntityTypeMapping TypeName="BankingDBModel.BranchInfo">
+              <MappingFragment StoreEntitySet="BranchInfo">
+                <ScalarProperty Name="branchNo" ColumnName="branchNo" />
+                <ScalarProperty Name="branchName" ColumnName="branchName" />
+                <ScalarProperty Name="branchCity" ColumnName="branchCity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_deleteAccount" FunctionName="BankingDBModel.Store.sp_deleteAccount" />
+          <FunctionImportMapping FunctionImportName="sp_newAccount" FunctionName="BankingDBModel.Store.sp_newAccount" />
+          <FunctionImportMapping FunctionImportName="updateBalance" FunctionName="BankingDBModel.Store.updateBalance" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
