@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            //var z = document.get
+            $("#btnLogin").click(function () {
+
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: 'http://localhost:55913/api/login/getlogin?username=' + document.getElementById("txt_username").value+'&password='+ document.getElementById("txt_password").value,
+                    success: function (data) {
+                        //alert("Success");
+                        console.log(data);
+                        //document.write(data);
+                    }
+                })
+            });
+        });
+    </script>
+</head>
+<body>
+    Username : <input id="txt_username" type="text" />
+    <br />
+    Password : <input id="txt_password" type="password" />
+    <br />
+    <input id="btnLogin" type="button" value="Login" />
+</body>
+</html>

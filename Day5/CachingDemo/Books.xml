@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Books>
+  <Book>
+    <Author>Chetan Bhagat</Author>
+    <Title>2 States</Title>
+    <Category>Story</Category>
+    <Price>200</Price>
+  </Book>
+  <Book>
+    <Author>J K Rowling</Author>
+    <Title>Harry Potter</Title>
+    <Category>Fiction</Category>
+    <Price>500</Price>
+  </Book>
+  <Book>
+    <Author>Anish</Author>
+    <Title>Shiva Triology</Title>
+    <Category>Story</Category>
+    <Price>900</Price>
+  </Book>
+  <Book>
+    <Author>Nikhil</Author>
+    <Title>How to sleep in a class</Title>
+    <Category>Adventure</Category>
+    <Price>40</Price>
+  </Book>
+</Books>
